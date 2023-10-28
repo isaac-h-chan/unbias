@@ -22,7 +22,7 @@ ssp = SyllableTokenizer()
 sentimentAnalyzer = vader.SentimentIntensityAnalyzer()
 
 # Processes a single string
-def clean_and_tokenize(words):
+def cleanTokenize(words):
     if not isinstance(words, str):
         words = str(words)
     words = words.lower()
@@ -51,7 +51,7 @@ def getMeanSyllables(text: str) -> float:
     
     Returns: Float value representing average syllables in the block of text excluding stopwords
     """
-    words = clean_and_tokenize(text)
+    words = cleanTokenize(text)
     meanSyllables = 0
     i = 0
     for word in words:
