@@ -3,7 +3,7 @@
     "name": "Unbias",
     "description": "Media Bias Remover",
     "version": "1.0",
-    "permissions": ["activeTab", "storage", "webNavigation"],
+    "permissions": ["activeTab", "storage", "webNavigation", "scripting"],
     "action": {
         "default_popup": "popup/popup.html",
         "default_icon": "images/icon.png"

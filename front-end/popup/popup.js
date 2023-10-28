@@ -1,11 +1,30 @@
 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    const currentTabId = tabs[0].id;
-    chrome.storage.local.get(currentTabId.toString(), (result) => {
-        const count = result[currentTabId];
-        if (typeof count !== 'undefined') {
-            document.getElementById('count').textContent = `Number of <p> tags: ${count}`;
-        } else {
-            document.getElementById('count').textContent = 'Unable to fetch <p> tag count.';
+    const currentTab = tabs[0];
+    chrome.scripting.executeScript({
+        target: { tabId: currentTab.id },
+        function: getSelectedTextFromPage,
+    })
+    .then((injectionResults) => {
+        for (const result of injectionResults) {
+            if (chrome.runtime.lastError) {
+                console.error(chrome.runtime.lastError);
+                return;
+            }
+            const selectedText = result.result;
+            if (selectedText) {
+                document.getElementById('selectedText').textContent = selectedText;
+            } else {
+                document.getElementById('selectedText').textContent = 'No text selected.';
+            }
         }
-    });
+    })
+    .catch((error) => {
+        console.error(error);
+        document.getElementById('selectedText').textContent = 'An error occurred.';
+    })
 });
+
+function getSelectedTextFromPage() {
+    const selection = window.getSelection();
+    return selection.toString();
+}
