@@ -2,6 +2,8 @@ body {
     font-family: sans-serif;
     margin: 2px;
     padding: 2px;
+    height: auto;
+    width: 240px;
 }
 
 h1 {
