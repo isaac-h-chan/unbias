@@ -1,2 +1,2 @@
 # unbias
-Browser Extension to foster open minded individuals
+a browser extension to help you better express yourself
