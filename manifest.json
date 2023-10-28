@@ -3,18 +3,25 @@
     "name": "Unbias",
     "description": "Media Bias Remover",
     "version": "1.0",
-    "permissions": ["activeTab", "storage", "webNavigation", "scripting"],
+    "permissions": [
+        "activeTab", 
+        "storage", 
+        "webNavigation", 
+        "scripting",
+        "tabs",
+        "<all_urls>"
+    ],
     "action": {
-        "default_popup": "popup/popup.html",
-        "default_icon": "images/icon.png"
+        "default_popup": "front-end/popup/popup.html",
+        "default_icon": "front-end/images/icon.png"
     },
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
-            "js": ["scripts/content.js"]
+            "js": ["front-end/scripts/content.js"]
         }
     ],
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "front-end/background.js"
     }
 }

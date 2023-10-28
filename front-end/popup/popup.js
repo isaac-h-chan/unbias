@@ -1,5 +1,9 @@
 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const currentTab = tabs[0];
+    if (currentTab.url?.startsWith("chrome://")) {
+        document.getElementById('selectedText').textContent = "Does not work in chrome:// websites";
+        return undefined;
+    }
     chrome.scripting.executeScript({
         target: { tabId: currentTab.id },
         function: getSelectedTextFromPage,

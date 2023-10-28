@@ -4,7 +4,7 @@ from api.analyze import getMeanSyllables, getMeanWords, getSentiment, cleanToken
 import requests
 import together
 
-together.api_key = "your api key"
+together.api_key = "40cf8a0074d3b4a1b06445377ae0edea96ff2ce61f2a1388131668ed9bcb3ad4"
 ENDPOINT_URL = "https://api.together.xyz/inference"
 MODEL = "togethercomputer/llama-2-7b-chat"
 
