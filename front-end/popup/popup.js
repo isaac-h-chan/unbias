@@ -5,8 +5,11 @@ chrome.runtime.onMessage.addListener((message, sender) => {
         const sentences = data.sents;
         const scores = data.sentiment;
 
-        console.log('message received: ' + data);
-        document.getElementById('complexity').textContent = 'Text complexity: ' + data.complexity;
+        const complexity = data.complexity.toFixed(2);
+        const avgLen = data.length;
+        const fleschScore = 206.835 - (1.015 * avgLen) - (84.6 * complexity);
+
+        document.getElementById('complexity').textContent = 'Clarity index: ' + fleschScore;
 
         const sentsList = document.getElementById('sentences');
         for (i = 0; i < sentences.length; ++i) {

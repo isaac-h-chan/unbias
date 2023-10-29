@@ -21,6 +21,12 @@ chrome.runtime.onMessage.addListener(async (message, sender) => {
         popupSender = sender;
         try {
             let data = await getScores(selectedText);
+            
+            chrome.runtime.sendMessage(popupSender.id, {
+                action: 'apiResponse', 
+                data: data
+            });
+
             // log data for testing
             console.log('text complexity: ' + data.complexity);
             console.log('text length: ' + data.length);
