@@ -73,6 +73,7 @@ chrome.runtime.onMessage.addListener((message, sender) => {
                 .catch(error => {
                     console.error("Error in generate function:", error);
             });
+            console.log('sentence clicked!');
         });
     }
 })
