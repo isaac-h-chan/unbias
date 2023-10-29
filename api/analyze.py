@@ -77,7 +77,7 @@ def getMeanWords(text: str) -> float:
     meanWords = 0
     sents = [re.sub("[.!?]", "", sent) for sent in getSentences(text)]
     meanWords += sum([len(sent.split()) for sent in sents])
-    return meanWords/len(sents)
+    return meanWords/max(1, len(sents))
 
 def getSentiment(text: str) -> list and list:
     """
