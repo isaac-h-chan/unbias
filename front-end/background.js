@@ -30,7 +30,7 @@ function makeApiRequest(text) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: { text: text } // Use JSON.stringify here
+        body: JSON.stringify({ text: text }) // Use JSON.stringify here
     });
 
     fetch(request)
