@@ -12,13 +12,20 @@ chrome.tabs.onActivated.addListener((activeInfo) => {
     });
 });
 
+let popupSender = null;
+// makes api call
 chrome.runtime.onMessage.addListener(async (message, sender) => {
     if (message.action === 'makeApiCall') {
         const selectedText = message.text;
         console.log('right before api call is made')
+        popupSender = sender;
         try {
             let data = await makeApiRequest(selectedText);
-
+            // sends the data to popup.js
+            chrome.runtime.sendMessage(popupSender.id, {
+                action: 'apiResponse', 
+                data: data
+            });
             // log data for testing
             console.log('text complexity: ' + data.complexity);
             console.log('text length: ' + data.length);
@@ -26,6 +33,7 @@ chrome.runtime.onMessage.addListener(async (message, sender) => {
                 console.log('Sentence:', data.sents[i]);
                 console.log('Sentiment Score:', data.sentiment[i].compound);
             }
+            console.log(data);
         } catch (error) {
             console.error("Error processing data: ", error);
         }
