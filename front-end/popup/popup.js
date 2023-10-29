@@ -9,6 +9,8 @@ chrome.runtime.onMessage.addListener((message, sender) => {
 
     const grade = grades[Math.min(Math.floor((0.39 * data.length) + 11.8 * data.complexity - 15.59), 18)];
     document.getElementById('complexity').textContent = 'Comprehension Level: ' + grade;
+    
+    document.getElementById('body').style.width = '400px';
 
     const container = document.getElementById('container');
     // hides comprehension level and line breaks when no text selected
