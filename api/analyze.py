@@ -21,7 +21,6 @@ nltk.download('punkt')
 
 ssp = SyllableTokenizer()
 sentimentAnalyzer = vader.SentimentIntensityAnalyzer()
-stopwords = set(stopwords.words("english"))
 
 # Processes a single string
 def cleanTokenize(words):
@@ -55,13 +54,10 @@ def getMeanSyllables(text: str) -> float:
     """
     words = cleanTokenize(text)
     meanSyllables = 0
-    i = 0
     for word in words:
-        if word.lower() not in stopwords:
-            tokens = ssp.tokenize(word)
-            meanSyllables += len(tokens)
-            i += 1
-    meanSyllables /= i
+        tokens = ssp.tokenize(word)
+        meanSyllables += len(tokens)
+    meanSyllables /= max(1, len(words))
     return meanSyllables
 
 def getSentences(text: str) -> list:
