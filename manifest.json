@@ -7,8 +7,7 @@
         "activeTab", 
         "storage", 
         "webNavigation", 
-        "scripting",
-        "http://127.0.0.1:8000/analyze"
+        "scripting"
     ],
     "action": {
         "default_popup": "front-end/popup/popup.html",
