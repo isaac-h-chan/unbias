@@ -6,6 +6,10 @@ function getSelectedText() {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'getSelectedText') {
         const selectedText = getSelectedText();
-        sendResponse(selectedText);
+        if (selectedText) {
+            sendResponse({ action: 'selectedText', text: selectedText });
+        } else {
+            sendResponse({ action: 'selectedText', text: null });
+        }
     }
 });

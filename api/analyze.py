@@ -17,6 +17,7 @@ else:
 
 nltk.download('vader_lexicon')
 nltk.download('stopwords')
+nltk.download('punkt')
 
 ssp = SyllableTokenizer()
 sentimentAnalyzer = vader.SentimentIntensityAnalyzer()
