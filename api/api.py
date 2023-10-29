@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from api.analyze import getMeanSyllables, getMeanWords, getSentiment, cleanTokenize
-import requests
+import regex as re
 import together
 
 together.api_key = ""
@@ -32,7 +32,7 @@ def neutral(req: Words):
 
     text = req.text
     
-    maxTokens = (len(cleanTokenize(text)).bit_length() + 1)**2
+    maxTokens = 2*(len(cleanTokenize(text)).bit_length() + 1)**2
 
     prompt_stem = """<human>: Rephrase the following text in a neutral tone: If you don't get your act together, I'm going to lose my mind!!!I'm not kidding!!!I'm at my wit's end!!!I've never been so angry in my life!
 
@@ -46,14 +46,14 @@ def neutral(req: Words):
 
     res = together.Complete.create(
         model=MODEL,
-        prompt=prompt_stem + text + "\n<bot>: ",
+        prompt=prompt_stem + text + "\n\n<bot>:",
         max_tokens=maxTokens,
-        stop=["<human>", "."],
+        stop=["<human>", "\n\n"],
         temperature=0.7,
         top_p=0.7,
         top_k=50,
         repetition_penalty=1
     )
 
-    return res["output"]["choices"]
+    return re.sub("\\n\\n", "", res["output"]["choices"][0]["text"])
     

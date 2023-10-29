@@ -20,12 +20,7 @@ chrome.runtime.onMessage.addListener(async (message, sender) => {
         console.log('right before api call is made')
         popupSender = sender;
         try {
-            let data = await makeApiRequest(selectedText);
-            // sends the data to popup.js
-            chrome.runtime.sendMessage(popupSender.id, {
-                action: 'apiResponse', 
-                data: data
-            });
+            let data = await getScores(selectedText);
             // log data for testing
             console.log('text complexity: ' + data.complexity);
             console.log('text length: ' + data.length);
@@ -40,8 +35,28 @@ chrome.runtime.onMessage.addListener(async (message, sender) => {
     }
 });
 
-async function makeApiRequest(text) {
+async function getScores(text) {
     const url = "http://127.0.0.1:8000/analyze";
+    const request = new Request(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ text: text }) // Use JSON.stringify here
+    });
+
+    try {
+        const response = await fetch(request);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error making API request:", error);
+    }
+}
+
+
+async function getNeutralRecommendations(text) {
+    const url = "http://127.0.0.1:8000/neutral";
     const request = new Request(url, {
         method: 'POST',
         headers: {
