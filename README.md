@@ -15,6 +15,6 @@ A browser extension to help you better express yourself
 4. **Analyze Tone**: Sentences from the highlighted text are graded based on tone.
 5. **Get Recommendations**: Click on any sentence in the popup to receive a recommended replacement.
 
-###License
+### License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
