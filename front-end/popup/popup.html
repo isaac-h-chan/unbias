@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-    <div class="container">
+    <div id="container" class="hidden">
         <h1>unbias</h1>
-        <div id="selectedText">Select some text first</div>     <hr>
-        <div id="complexity">Complexity Score: 0</div>      <hr>
-        <ol id="sentences">Negativity Scores per Sentence</ul>
+        <div id="selectedText">Select some text first</div>
+        <div id="hidden" hidden>
+            <hr>
+            <div id="complexity">Comprehension Level: None</div>      
+            <hr>
+        </div>
     </div>
     <script src="popup.js"></script>
 </body>

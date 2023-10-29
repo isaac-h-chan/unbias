@@ -3,36 +3,42 @@ body {
     background-color: #f5f5f5;
     margin: 0;
     padding: 15px;
-    width: 360px;
-    border-radius: 5px;
+    width: 400px;
 }
-    
-.container {
+
+#container {
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px;
     overflow: hidden;
+    border-radius: 8px;
 }
 
 h1 {
-    font-size: 32px;
+    font-size: 48px;
     color: #333;
     margin-top: 0;
     margin-bottom: 10px;
     text-align: center;
     font-weight: bold;
+    background: -webkit-linear-gradient(
+        rgba(255, 0, 0, 1),
+        rgba(255, 0, 180, 1),
+        rgba(0, 100, 200, 1));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
 }
 
 #selectedText {
     display: flex;
     color: #555;
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 18px;
     justify-content: center;
 }
 
 hr {
-    border: none;
     border-top: 1px solid #eee;
     margin: 10px 0;
 }
@@ -41,24 +47,64 @@ hr {
     display: flex;
     justify-content: center;
     color: #555;
-    margin-bottom: 10px;
-    font-size: 16px;
+
+    font-size: 18px;
 }
 
-ol {
-    text-align: justify;
-    padding-left: 16px;
-    padding-right: 16px;
-    align-items: center;
+ul {
+    /* text-align: justify; */
+    margin-top: 0px;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 #sentences > li {
+    font-weight: normal;
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
+li:hover {
+    background-size: 0 3px, 100% 3px;
+  }
+
+li {
+    background:
+      linear-gradient(
+        to right,
+        rgba(100, 200, 200, 1),
+        rgba(100, 200, 200, 1)
+      ),
+      linear-gradient(
+        to right,
+        rgba(255, 0, 0, 1),
+        rgba(255, 0, 180, 1),
+        rgba(0, 100, 200, 1)
+    );
+    background-size: 100% 3px, 0 3px;
+    background-position: 100% 100%, 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 400ms;
+  }
+
 #sentences li {
     padding: 5px 0;
     color: #666;
+    display: flex;
+    align-items: center;
+}
+
+.sent {
+    width: 85%;
+    padding-right: 8px;
+}
+
+.score {
+    width: 15%;
+    padding: 2px;
+    text-align: right;
+    font-weight: bolder;
 }

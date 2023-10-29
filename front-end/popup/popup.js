@@ -5,16 +5,34 @@ chrome.runtime.onMessage.addListener((message, sender) => {
         const sentences = data.sents;
         const scores = data.sentiment;
 
-        const complexity = data.complexity.toFixed(2);
-        const avgLen = data.length;
-        const fleschScore = 206.835 - (1.015 * avgLen) - (84.6 * complexity);
+        const grade = grades[Math.min(Math.floor((0.39 * data.length) + 11.8 * data.complexity - 15.59), 18)];
+        document.getElementById('complexity').textContent = 'Comprehension Level: ' + grade;
 
-        document.getElementById('complexity').textContent = 'Clarity index: ' + fleschScore;
-
+        const container = document.getElementById('container');
+        // hides comprehension level and line breaks when no text selected
+        const hiddenContent = document.getElementById('hidden');
+        hiddenContent.removeAttribute('hidden');
+        // injects tone scores list
+        const sent_list = document.createElement('ul');
+        sent_list.innerText = 'Tone Scores';
+        sent_list.setAttribute('id', 'sentences');
+        container.appendChild(sent_list);
+        // injects sentence into tone scores list
         const sentsList = document.getElementById('sentences');
         for (i = 0; i < sentences.length; ++i) {
-            let li = document.createElement('li')
-            li.innerText = sentences[i] + " -- " + scores[i].neg;
+            let li = document.createElement('li');
+            li.classList.add('element')
+
+            let sent = document.createElement('div');
+            sent.classList.add('sent')
+            sent.innerText = sentences[i]
+
+            let score = document.createElement('div');
+            score.classList.add('score')
+            score.innerText= scores[i].compound.toFixed(2);
+
+            li.appendChild(sent);
+            li.appendChild(score);
             sentsList.appendChild(li);
         }
     }
@@ -34,7 +52,29 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             // Notify background script to make the API call
             chrome.runtime.sendMessage({ action: 'makeApiCall', text: response.text });
         } else {
-            document.getElementById('selectedText').textContent = 'No text selected.';
+            document.getElementById('selectedText').textContent = 'Select text to begin!';
         }
     });
 });
+
+grades = {
+    0: 'Kindergarten',
+    1: 'First Grade',
+    2: 'Second Grade',
+    3: 'Third Grade',
+    4: 'Fourth Grade',
+    5: 'Fifth Grade',
+    6: '6th to 7th Grade',
+    7: '6th to 7th Grade',
+    8: '8th to 9th Grade',
+    9: '8th to 9th Grade',
+    10: '10th to 12th Grade',
+    11: '10th to 12th Grade',
+    12: '10th to 12th Grade',
+    13: 'College Level',
+    14: 'College Level',
+    15: 'College Level',
+    16: 'College Level',
+    17: 'Graduate Level',
+    18: 'Graduate Level'
+}
