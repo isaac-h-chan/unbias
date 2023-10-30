@@ -6,7 +6,7 @@ A browser extension to help you better express yourself
 ### Features
 - **Reading Level Assessment**: Get a grade-level estimate for any highlighted text
 - **Tone Analysis**: Sentences are individually evaluated for tone, with a compound score representing the average of the positive, negative, and neutral tones
-- **AI-Powered Sentence Reccomendations**: Click on a sentence in the popup to fetch an AI-reccomended replacement, structured to be more neutral and clear
+- **AI-Powered Sentence Recommendations**: Click on a sentence in the popup to fetch an AI-recommended replacement, structured to be more neutral and clear
 
 ### How to Use
 1. **Highlight Text**: Highlight a portion of text on any web page.
