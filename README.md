@@ -3,6 +3,8 @@ A browser extension to help you better express yourself
 
 **unbias** is a revolutionary Chrome extension designed to help users with a variety of accessibility issues. Our mission is to ensure clear, concise, and neutral communication in digital interactions. Whether you're concerned about accidentally offending someone due to unintended tone, or want to ensure your message isn't misunderstood, **unbias** is here to assist you.
 
+**unbias** was made at CalHacks 10.0 (2023), check out our devpost [here](https://devpost.com/software/unbias-ytae79)
+
 ### Features
 - **Reading Level Assessment**: Get a grade-level estimate for any highlighted text
 - **Tone Analysis**: Sentences are individually evaluated for tone, with a compound score representing the average of the positive, negative, and neutral tones
